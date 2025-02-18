@@ -1,0 +1,61 @@
+package Source.Exercise3;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Scanner;
+
+public class Person {
+
+    String id;
+    String hometown;
+    Date dateOfBirth;
+
+    public Person() {
+    }
+
+    public Person(String id, String hometown, Date dateOfBirth) {
+        this.id = id;
+        this.hometown = hometown;
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void displayInfo() {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        System.out.println("ID:" + id);
+        System.out.println("Hometown:" + hometown);
+        System.out.println("DOB:" + sdf.format(dateOfBirth));
+    }
+
+    public void addPerson() {
+        try {
+            Scanner nhap = new Scanner(System.in);
+            System.out.println("Enter ID:");
+            id = nhap.nextLine();
+            System.out.println("Enter Homtown:");
+            hometown = nhap.nextLine();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            System.out.println("Enter DateOfBith(dd/MM/yyyy):");
+            String dateOfBirthString = nhap.nextLine();
+            dateOfBirth = sdf.parse(dateOfBirthString);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public boolean editPerson() {
+        try {
+            Scanner nhap = new Scanner(System.in);
+            System.out.println("Enter hometown:");
+            hometown = nhap.nextLine();
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/YYYY");
+            System.out.println("Enter dateOfBirth(dd/MM/yyyy)");
+            String dateOfBirthString = nhap.nextLine();
+            dateOfBirth = sdf.parse(dateOfBirthString);
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+        return false;
+    }
+}
