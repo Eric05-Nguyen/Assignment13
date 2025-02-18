@@ -1,0 +1,60 @@
+package Source.Exercise3;
+
+import java.util.Scanner;
+
+public class Processor {
+
+    public static void main(String[] args) {
+        Scanner nhap = new Scanner(System.in);
+        PersonList personlist = new PersonList();
+         int choice; 
+        do {
+            System.out.println("---------Menu---------");
+            System.out.println("0.Exit");
+            System.out.println("1. them hoc sinh");
+            System.out.println("2.them giao vien");
+            System.out.println("3.In thong tin toan bo");
+            System.out.println("4.Chinh sua bang id");
+            System.out.println("5. Xoa bang id");
+            System.out.println("Choice :");
+           choice= nhap.nextInt();
+            nhap.nextLine();
+            switch (choice) {
+                case 1:
+                    Student student = new Student();
+                    student.addPerson();
+                    personlist.addPerson(student);
+                    break;
+                case 2: {
+                    Teacher teacher = new Teacher();
+                    teacher.addPerson();
+                    personlist.addPerson(teacher);
+                    break;
+                }
+                case 3: {
+                    System.out.println("-------------------");
+                    personlist.displayAll();
+                    break;
+                }
+                case 4: {
+                    System.out.println("----------------------");
+                    System.out.print("Enter ID to edit: ");
+                    String editId = nhap.nextLine();
+                    personlist.editPersonById(editId);
+                    break;
+                }
+                case 5: {
+                    System.out.println("------------------");
+                    System.out.print("Enter ID to delete: ");
+                    String deleteId = nhap.nextLine();
+                    personlist.deletePersonById(deleteId);
+                    break;
+                }
+                default: {
+                    System.out.println("Try again!");
+                }
+            }
+        } while (choice != 0);
+       nhap.close();
+    }
+}
