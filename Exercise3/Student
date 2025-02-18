@@ -1,0 +1,45 @@
+# Assignment13package Source.Exercise3;
+
+import java.util.Date;
+import java.util.Scanner;
+
+public class Student extends Person {
+
+    String major;
+
+    public Student() {
+    }
+
+    public Student(String id, String hometown, Date dateOfBirth, String major) {
+        super(id, hometown, dateOfBirth);
+        this.major = major;
+
+    }
+
+    @Override
+
+    public void displayInfo() {
+        super.displayInfo();
+        System.out.println("Major:" + major);
+    }
+
+    @Override
+
+    public void addPerson() {
+        super.addPerson();
+        Scanner nhap = new Scanner(System.in);
+        System.out.println("Ente major:");
+        major = nhap.nextLine();
+    }
+
+    @Override
+
+    public boolean editPerson() {
+        super.editPerson();
+        Scanner nhap = new Scanner(System.in);
+        System.out.println("Edit major:");
+        major = nhap.nextLine();
+        return true;
+    }
+
+}
