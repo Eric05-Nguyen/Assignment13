@@ -1,0 +1,71 @@
+package personlist;
+
+import java.util.Scanner;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.ArrayList;
+
+public class PersonList {
+
+    ArrayList<Person> persons = new ArrayList<>();
+    Scanner nhap = new Scanner(System.in);
+    private SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+    public void addPerson(Person p) {
+        persons.add(p);
+        p.addPerson();
+    }
+
+    public boolean deletePersonById(String id) {
+        for (int i = 0; i < persons.size(); i++) {
+            if (persons.get(i).getId().equalsIgnoreCase(id)) {
+                persons.remove(i);
+                System.out.println("Da xoa nguoi co id :" + id);
+                return true;
+            }
+        }
+        System.out.println("kh tim thay");
+        return false;
+    }
+
+    public void editPersonById(String id) {
+        for (int i = 0; i < persons.size(); i++) {
+            if (persons.get(i).getId().equalsIgnoreCase(id)) {
+                Person p = persons.get(i);
+                System.out.println("Nhap que moi:");
+                String newHometown = nhap.nextLine();
+                Date newDateOfBirth = null;
+                while (newDateOfBirth == null) {
+                    try {
+                        System.out.println("nhap ngay sinh moi (dd/MM/yyyy):");
+                        newDateOfBirth = sdf.parse(nhap.nextLine());
+                    } catch (Exception e) {
+                        System.out.println("nhap lai!!!");
+                    }
+                }
+                if (p instanceof Student) {
+                    System.out.println("chuye nganhf moi:");
+                    String newMajor = nhap.nextLine();
+                    ((Student) p).editPerson(newHometown, newDateOfBirth, newMajor);
+                } else if (p instanceof Teacher) {
+                    System.out.println("nhap khoa moi:");
+                    String newDepartment = nhap.nextLine();
+                    ((Teacher) p).editPerson(newHometown, newDateOfBirth, newDepartment);
+                } else {
+                    p.editPerson(newHometown, newDateOfBirth);
+                }
+
+                System.out.println("da cap nhat");
+                return;
+            }
+        }
+        System.out.println(" tim thay ID: " + id);
+    }
+
+    public void displayAll() {
+        for (Person p : persons) {
+            p.displayInfo();
+            System.out.println("---------------------");
+        }
+    }
+}
