@@ -1,0 +1,39 @@
+
+package personlist;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+public class Person {
+    private String id;
+    private String hometown;
+    private Date dateOfBirth;
+      private  SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    public Person(String id ,String hometown,Date dateOfBirth){
+        this.id=id;
+        this.hometown=hometown;
+        this.dateOfBirth=dateOfBirth;
+    }
+    public String getId(){
+        return id;
+        
+    }
+    public String getHometown(){
+        return hometown;
+    }
+    public Date getDateOfBirth(){
+        return dateOfBirth;
+    }
+    public void displayInfo(){
+        System.out.println("----------------------------");
+        System.out.println("ID:"+id);
+        System.out.println("HomeTown:"+hometown);
+        System.out.println("DOB:"+sdf.format(dateOfBirth));
+    }
+    public boolean editPerson( String hometown, Date dateOfBirth){
+        this.hometown=hometown;
+        this.dateOfBirth=dateOfBirth;
+        return true;
+    } 
+     public void addPerson(){
+        System.out.println("Them nguoi co id :"+id);
+    } 
+}
